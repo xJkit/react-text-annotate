@@ -72,28 +72,24 @@ class App extends React.Component<any, any> {
               <option value="ORG">ORG</option>
               <option value="PERSON">PERSON</option>
             </select>
-            <TokenAnnotator
+            <TextAnnotator
               style={{
                 fontFamily: 'IBM Plex Sans',
                 maxWidth: 500,
                 lineHeight: 1.5,
               }}
-              tokens={TEXT.split(' ')}
+              content={TEXT}
               value={this.state.value}
               onChange={this.handleChange}
+              tagStyle={{
+                color: 'green',
+                fontWeight: 'bold',
+              }}
               getSpan={span => ({
                 ...span,
                 tag: this.state.tag,
                 color: TAG_COLORS[this.state.tag],
               })}
-              renderMark={props => (
-                <mark
-                  key={props.key}
-                  onClick={() => props.onClick({start: props.start, end: props.end})}
-                >
-                  {props.content} [{props.tag}]
-                </mark>
-              )}
             />
           </Card>
         </div>

@@ -27,6 +27,7 @@ type TextBaseProps<T> = {
   value: T[]
   onChange: (value: T[]) => any
   getSpan?: (span: TextSpan) => T
+  tagStyle: any
   // TODO: determine whether to overwrite or leave intersecting ranges.
 }
 
@@ -70,12 +71,17 @@ const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
     }
   }
 
-  const {content, value, style} = props
+  const {content, value, style, tagStyle} = props
   const splits = splitWithOffsets(content, value)
   return (
     <div style={style} onMouseUp={handleMouseUp}>
       {splits.map(split => (
-        <Split key={`${split.start}-${split.end}`} {...split} onClick={handleSplitClick} />
+        <Split
+          key={`${split.start}-${split.end}`}
+          {...split}
+          tagStyle={tagStyle}
+          onClick={handleSplitClick}
+        />
       ))}
     </div>
   )

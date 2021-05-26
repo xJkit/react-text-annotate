@@ -8,6 +8,7 @@ export interface MarkProps {
   tag: string
   color?: string
   onClick: (any) => any
+  tagStyle: any
 }
 
 const Mark: React.SFC<MarkProps> = props => (
@@ -19,7 +20,16 @@ const Mark: React.SFC<MarkProps> = props => (
   >
     {props.content}
     {props.tag && (
-      <span style={{fontSize: '0.7em', fontWeight: 500, marginLeft: 6}}>{props.tag}</span>
+      <span
+        style={{
+          fontSize: '0.7em',
+          fontWeight: 500,
+          marginLeft: 6,
+          ...(props.tagStyle || {}),
+        }}
+      >
+        [{props.tag}]
+      </span>
     )}
   </mark>
 )
