@@ -8,7 +8,6 @@
 
 # production
 /dist
-/lib
 /example/dist
 
 # misc
